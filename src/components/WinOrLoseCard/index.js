@@ -16,7 +16,8 @@ const WinOrLoseCard = props => {
     <div className="result-card">
       <div className="score-card">
         <h1 className="result-title">{text}</h1>
-        <p className="result-caption">Best Score</p>
+        {isWon && <p className="result-caption">Best Score</p>}
+        {!isWon && <p className="result-caption">Score</p>}
         <p className="result-score">{score}/12</p>
         <button
           className="result-button"

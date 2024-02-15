@@ -3,8 +3,6 @@ import './index.css'
 const NavBar = props => {
   const {score, totalScore, isHide} = props
 
-  const displayScore = !isHide ? 'hide-score' : ''
-
   return (
     <nav className="nav-bar">
       <div className="logo-section">
@@ -15,10 +13,12 @@ const NavBar = props => {
         />
         <h2 className="logo-title">Emoji Game</h2>
       </div>
-      <div className={`nav-score-card ${displayScore}`}>
-        <p className="nav-score">Score: {score}</p>
-        <p className="nav-total-score">Top Score: {totalScore}</p>
-      </div>
+      {isHide && (
+        <div className="nav-score-card">
+          <p className="nav-score">Score: {score}</p>
+          <p className="nav-total-score">Top Score: {totalScore}</p>
+        </div>
+      )}
     </nav>
   )
 }
