@@ -21,75 +21,95 @@ import WinOrLoseCard from '../WinOrLoseCard'
 import './index.css'
 
 class EmojiGame extends Component {
-  state = {score: 0, topScore: 0, isClickedTwice: false, emojiId: -1}
+  state = {topScore: 0, isPlaying: true, clickedEmojis: []}
 
-  playAgain = score => {
-    const {topScore} = this.state
+  playAgain = () => {
     this.setState({
-      score: 0,
-      isClickedTwice: false,
-      emojiId: -1,
+      isPlaying: true,
+      clickedEmojis: [],
     })
-    if (score > topScore) {
-      this.setState({topScore: score})
+  }
+
+  renderScoreCard = () => {
+    const {emojisList} = this.props
+    const {clickedEmojis} = this.state
+    const isWon = clickedEmojis.length === emojisList.length
+
+    return (
+      <WinOrLoseCard
+        score={clickedEmojis.length}
+        playAgain={this.playAgain}
+        isWon={isWon}
+      />
+    )
+  }
+
+  finishAndSetTopScore = currentScore => {
+    const {topScore} = this.state
+    let newScore = topScore
+    if (currentScore > topScore) {
+      newScore = currentScore
     }
+    this.setState({topScore: newScore, isPlaying: false})
   }
 
   emojiClicked = id => {
-    const {score, topScore, emojiId} = this.state
-    if (id !== emojiId) {
-      this.setState({emojiId: id})
-      this.setState(prevState => ({
-        score: prevState.score + 1,
-      }))
-      if (topScore < score) {
-        this.setState(prevState => ({topScore: prevState.topScore + 1}))
-      }
+    const {emojisList} = this.props
+    const {clickedEmojis} = this.state
+    const isClickedEmojiTwice = clickedEmojis.includes(id)
+    const totalEmojisClicked = clickedEmojis.length
+
+    if (isClickedEmojiTwice) {
+      this.finishAndSetTopScore(totalEmojisClicked)
     } else {
+      if (emojisList.length - 1 === totalEmojisClicked) {
+        this.finishAndSetTopScore(emojisList.length)
+      }
       this.setState(prevState => ({
-        isClickedTwice: !prevState.isClickedTwice,
+        clickedEmojis: [...prevState.clickedEmojis, id],
       }))
     }
   }
 
-  //   renderResults = () => {
-  //     const {score, totalScore, isClickedTwice} = this.state
-  //     const result = isClickedTwice || totalScore < 12
-  //     return
-  //   }
-
-  render() {
+  renderEmojisList = () => {
     const shuffledEmojisList = () => {
       const {emojisList} = this.props
       return emojisList.sort(() => Math.random() - 0.5)
     }
+    const shuffledEmojis = shuffledEmojisList()
+    return (
+      <ul className="emojis-list">
+        {shuffledEmojis.map(eachEmoji => (
+          <EmojiCard
+            emojiDetails={eachEmoji}
+            key={eachEmoji.id}
+            emojiClicked={this.emojiClicked}
+          />
+        ))}
+      </ul>
+    )
+  }
 
-    const listEmojis = shuffledEmojisList()
-    const {score, topScore, isClickedTwice} = this.state
-    const hideScore = isClickedTwice || score === 12
+  render() {
+    const {clickedEmojis, topScore, isPlaying} = this.state
 
     return (
       <div className="app-container">
-        <NavBar score={score} totalScore={topScore} isHide={hideScore} />
-        <div className="game-container">
-          <ul className="emojis-list">
-            {!isClickedTwice &&
-              score < 12 &&
-              listEmojis.map(eachEmoji => (
-                <EmojiCard
-                  emojiDetails={eachEmoji}
-                  key={eachEmoji.id}
-                  emojiClicked={this.emojiClicked}
-                />
-              ))}
-          </ul>
+        <NavBar
+          score={clickedEmojis.length}
+          totalScore={topScore}
+          isHide={isPlaying}
+        />
+
+        {isPlaying ? this.renderEmojisList() : this.renderScoreCard()}
+        {/* <div className="game-container">
           {isClickedTwice && (
             <WinOrLoseCard score={score} playAgain={this.playAgain} />
           )}
-          {score === listEmojis.length && (
+          {score === 12 && (
             <WinOrLoseCard score={score} playAgain={this.playAgain} />
           )}
-        </div>
+        </div> */}
       </div>
     )
   }

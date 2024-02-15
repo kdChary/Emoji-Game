@@ -1,16 +1,15 @@
 import './index.css'
 
 const WinOrLoseCard = props => {
-  const {score, playAgain} = props
+  const {score, playAgain, isWon} = props
 
-  const text = score === 12 ? 'You Won' : 'You Lose'
-  const imageUrl =
-    score === 12
-      ? 'https://assets.ccbp.in/frontend/react-js/won-game-img.png'
-      : 'https://assets.ccbp.in/frontend/react-js/lose-game-img.png'
+  const text = isWon ? 'You Won' : 'You Lose'
+  const imageUrl = isWon
+    ? 'https://assets.ccbp.in/frontend/react-js/won-game-img.png'
+    : 'https://assets.ccbp.in/frontend/react-js/lose-game-img.png'
 
   const playAgainClicked = () => {
-    playAgain(score)
+    playAgain()
   }
 
   return (

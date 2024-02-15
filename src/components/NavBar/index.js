@@ -3,7 +3,7 @@ import './index.css'
 const NavBar = props => {
   const {score, totalScore, isHide} = props
 
-  const displayScore = isHide ? 'hide-score' : ''
+  const displayScore = !isHide ? 'hide-score' : ''
 
   return (
     <nav className="nav-bar">
