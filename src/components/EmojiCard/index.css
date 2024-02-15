@@ -1,1 +1,23 @@
-/* Write your code here. */
+.emoji-card-item {
+  background-color: #ffffff33;
+  border: solid 2px #ffffff30;
+  border-radius: 13px;
+  width: 150px;
+  height: 150px;
+  margin: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px #797575;
+}
+
+.emoji-button {
+  background-color: transparent;
+  border: none;
+}
+
+.emoji {
+  width: 86px;
+  height: 86px;
+  margin: auto;
+}

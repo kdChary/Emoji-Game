@@ -77,3 +77,5 @@ const emojisList = [
 const App = () => <EmojiGame emojisList={emojisList} />
 
 export default App
+
+/* <NavBar /> <WinOrLoseCard /> */

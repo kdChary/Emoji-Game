@@ -1,1 +1,49 @@
-/* Write your code here. */
+* {
+  box-sizing: border-box;
+  font-family: 'Comic Sans MS';
+}
+
+.result-card {
+  background-color: #ffffff33;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  border-radius: 13px;
+  border: solid 3px #ffffff30;
+  width: 90%;
+  padding: 13px;
+  height: 470px;
+  box-shadow: 0 0 3px #646060;
+  margin: auto;
+}
+
+.result-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.result-caption {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.result-score {
+  font-size: 21px;
+  font-weight: 600;
+  color: #6a59ff;
+}
+.result-button {
+  color: #3d3d3d;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Roboto';
+  border: none;
+  border-radius: 13px;
+  padding: 9px 13px;
+  background-color: #ffce27;
+}
+
+.win-lose-image {
+  width: 50%;
+}
