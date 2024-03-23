@@ -94,15 +94,15 @@ class EmojiGame extends Component {
     const {clickedEmojis, topScore, isPlaying} = this.state
 
     return (
-      <div className="app-container">
+      <>
         <NavBar
           score={clickedEmojis.length}
           totalScore={topScore}
           isHide={isPlaying}
         />
-
-        {isPlaying ? this.renderEmojisList() : this.renderScoreCard()}
-        {/* <div className="game-container">
+        <div className="app-container">
+          {isPlaying ? this.renderEmojisList() : this.renderScoreCard()}
+          {/* <div className="game-container">
           {isClickedTwice && (
             <WinOrLoseCard score={score} playAgain={this.playAgain} />
           )}
@@ -110,7 +110,8 @@ class EmojiGame extends Component {
             <WinOrLoseCard score={score} playAgain={this.playAgain} />
           )}
         </div> */}
-      </div>
+        </div>
+      </>
     )
   }
 }

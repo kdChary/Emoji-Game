@@ -17,6 +17,12 @@
   box-shadow: 0 0 3px #646060;
   margin: auto;
 }
+@media (max-width: 767px) {
+  .result-card {
+    flex-direction: column-reverse;
+    height: 395px;
+  }
+}
 
 .result-title {
   font-size: 32px;
@@ -32,6 +38,21 @@
   font-size: 21px;
   font-weight: 600;
   color: #6a59ff;
+}
+@media (max-width: 767px) {
+  .result-card {
+    flex-direction: column-reverse;
+    height: 395px;
+  }
+  .result-score {
+    font-size: 17px;
+  }
+  .result-title {
+    font-size: 27px;
+  }
+  .result-caption {
+    font-size: 21px;
+  }
 }
 .result-button {
   color: #3d3d3d;

@@ -21,3 +21,13 @@
   height: 86px;
   margin: auto;
 }
+@media (max-width: 767px) {
+  .emoji-card-item {
+    width: 86px;
+    height: 86px;
+  }
+  .emoji {
+    width: 54px;
+    height: 54px;
+  }
+}
